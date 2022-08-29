@@ -86,6 +86,9 @@ Plug 'scrooloose/nerdcommenter' " allow fast comment
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 
+" git(HUB)
+Plug 'tpope/vim-rhubarb'
+
 " smooth scroll
 Plug 'yuttie/comfortable-motion.vim'
 
