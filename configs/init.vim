@@ -311,6 +311,10 @@ map <Leader>bb :Buffers<CR>
 " Remap surround to lowercase s so it does not add an empty space
 xmap sr <Plug>VSurround
 
+" open terminal in (v)ertical or (h)oritzonal
+noremap <Leader>tv :botright vnew <Bar> :terminal<CR>
+noremap <Leader>th :botright new <Bar> :terminal<CR>
+
 " run tests
 nnoremap <Leader>t :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
