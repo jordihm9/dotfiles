@@ -27,6 +27,8 @@ set incsearch
 set ignorecase
 set smartcase
 
+set re=0 " recommened by HerringtonDarkholme/yats.vim
+
 syntax on
 
 "" ----------------------------------------------------------------------------
@@ -46,6 +48,7 @@ Plug 'sheerun/vim-polyglot'	" Collection of language packs
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'leafgarland/typescript-vim' " typescript syntax highlighter
 Plug 'norcalli/nvim-colorizer.lua' " color highlighter 
+Plug 'HerringtonDarkholme/yats.vim' " typescript synyax
 
 " tree
 Plug 'preservim/nerdtree' " file system explorer
