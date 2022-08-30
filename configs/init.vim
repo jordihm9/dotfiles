@@ -27,78 +27,98 @@ set incsearch
 set ignorecase
 set smartcase
 
-set re=0 " recommened by HerringtonDarkholme/yats.vim
-
+" Turn on syntax highlighting.
 syntax on
+
+" Helps force plug-ins to load correctly when it is turned back on below.
+filetype off
+
+" For plug-ins to load correctly.
+filetype plugin indent on
 
 "" ----------------------------------------------------------------------------
 ""  PLUGINS
 "" ----------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" status bar
+" ----- Status bar
 Plug 'itchyny/lightline.vim'
+" -----
 
-" theme
+" ----- Color-themes
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
+" -----
 
-" syntax
+" ----- Syntax
 Plug 'sheerun/vim-polyglot'	" Collection of language packs
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'leafgarland/typescript-vim' " typescript syntax highlighter
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 Plug 'norcalli/nvim-colorizer.lua' " color highlighter 
-Plug 'HerringtonDarkholme/yats.vim' " typescript synyax
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" -----
 
-" tree
-Plug 'preservim/nerdtree' " file system explorer
+" ----- Autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
+" -----
+
+" ----- File system explorer
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin' " shows git status flag for files and folders
+" -----
 
-" icons
+" ----- Icons
 Plug 'ryanoasis/vim-devicons' " filetype-specific icons
+" -----
 
 " typing helpers
 Plug 'alvan/vim-closetag' " closes < >
 Plug 'tpope/vim-surround' " to surround with parenthesis and ticks
+" -----
 
-" tmux
+" ----- Tmux
 Plug 'christoomey/vim-tmux-navigator' " navigate seamlessly between vim and tmux splits
+" -----
 
-" autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
-
-" snippets
+" ----- Snippets
 Plug 'honza/vim-snippets'
+" -----
 
-" tests
+" ----- Tests
 Plug 'janko-m/vim-test'
+" -----
 
-" IDE
-Plug 'editorconfig/editorconfig-vim'
+" Search Tools
 Plug 'junegunn/fzf' " Fuzzy Finder
 Plug 'junegunn/fzf.vim' " Fuzzy Finder
-Plug 'easymotion/vim-easymotion' " Search tool
-Plug 'mhinz/vim-signify' " uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
-Plug 'yggdroot/indentline' " display the indention levels with thin vertical lines
-Plug 'scrooloose/nerdcommenter' " allow fast comment
+Plug 'easymotion/vim-easymotion' " fast-moving-search
 
-" git
+" ----- GIT
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-
 " git(HUB)
 Plug 'tpope/vim-rhubarb'
+" uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
+Plug 'mhinz/vim-signify'
+" -----
 
-" smooth scroll
-Plug 'yuttie/comfortable-motion.vim'
+" ----- Other
+Plug 'editorconfig/editorconfig-vim'
+Plug 'yuttie/comfortable-motion.vim' " smooth scroll
+Plug 'yggdroot/indentline' " display the indention levels with thin vertical lines
+Plug 'scrooloose/nerdcommenter' " fast comment
+" -----
 
 call plug#end()
 
 "" ----------------------------------------------------------------------------
 ""  PLUGINS CONFIG
 "" ----------------------------------------------------------------------------
-" themes
-" onedark:
+
+"" ----- onedark:
 colorscheme onedark
 set background=dark
 highlight Normal ctermbg=NONE
@@ -106,13 +126,30 @@ let g:onedark_allow_italics = 1
 let g:onedark_terminal_italics = 1
 let g:airline_theme = 'onedark'
 let g:lightline = { 'colorscheme': 'onedark'}
+"" -----
 
-" one:
+"" ----- one:
 colorscheme one
 set background=dark
 let g:one_allow_italics = 1
 let g:airline_theme = 'one'
 call one#highlight('Normal', '', 'none', '')
+"" -----
+
+"" oceanic
+colorscheme OceanicNext
+let g:airline_theme='oceanicnext'
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+" transparency
+hi Normal guibg=NONE ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
+"" -----
+
+" for vim 7
+set t_Co=256
 
 "Credit joshdick
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -131,12 +168,13 @@ if (empty($TMUX))
   endif
 endif
 
-au BufNewFile,BufRead *.html set filetype=htmldjango
+" au BufNewFile,BufRead *.html set filetype=htmldjango
 
-" colorizer
+"" ----- colorizer
 lua require'colorizer'.setup()
+"" -----
 
-" NerdTree 
+"" ----- NerdTree 
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeAutoDeleteBuffer=1
@@ -145,14 +183,15 @@ let NERDTreeDirArrows=1
 let NERDTreeShowLineNumbers=1
 " hidden files/folders in tree:
 let g:NERDTreeIgnore=['^node_modules$', '^.git$']
-
 " add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+"" -----
 
-" auto close tags
+"" ----- Auto-Close tags
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
+"" ----- 
 
-" coc config
+"" ----- Conquer of Completion (coc)
 let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-eslint', 
@@ -167,55 +206,77 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-deno',
   \ ]
+"" -----
 
-" vim fugitive
+"" ----- TreeSitter
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = false,
+    disable = {},
+  },
+  ensure_installed = {
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "markdown",
+    "python",
+    "scss",
+    "tsx",
+    "typescript",
+    "yaml"
+  }
+}
+EOF
+"" ------
+
+"" ----- vim fugitive
 command! -bang -nargs=? -complete=dir GFiles
   \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+" vertical diffing
+set diffopt+=vertical
+"" ------
 
+"" ------ fuzzy finder
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"" ------
 
-" fugitive always vertical diffing
-set diffopt+=vertical
-
-" vim-test
+"" ----- vim-test
 let g:test#basic#start_normal = 1 " leave terminal in normal mode to not exit on key press
 let g:test#neovim#start_normal = 1 " leave terminal in normal mode to not exit on key press
+"" -----
 
 "" ----------------------------------------------------------------------------
 ""  Key bindings / Mappings
 "" ----------------------------------------------------------------------------
 let mapleader = ' '
 
+" ----- Vanilla VIM mappings
 " stop highlighing matches
 map <Leader>sh :noh<CR>
-
-" split resizing
-" horitzonal:
-nnoremap <Leader>> 15<C-w>>
-nnoremap <Leader>< 15<C-w><
-" vertical:
-nnoremap <Leader>< 15<C-h><
-nnoremap <Leader>> 15<C-h>>
-
 " quick semicolon at the end of the line
 nnoremap <Leader>; $a;<Esc>
-
-" quick save and quick quit
+" save current
 nnoremap <Leader>w :w<CR>
+" save all
 nnoremap <Leader>wa :wa<CR>
+" quit
 nnoremap <Leader>q :q<CR>
-
 " fast scrolling 10 lines 
 map <A-J> 10j<CR>
 map <A-K> 10k<CR>
 " add another shortcut to scroll 1/2 page
 nmap <C-H> C-u<CR>
 nmap <C-J> C-d<CR>
-
 " let move lines of code using 'Alt + hjkl
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -226,34 +287,38 @@ nnoremap <Leader>j :m .+1<CR>==
 nnoremap <Leader>k :m .-2<CR>==
 vnoremap <Leader>j :m '>+1<CR>gv=gv
 vnoremap <Leader>k :m '<-2<CR>gv=gv
-
-" fast search
-nmap <Leader>se <Plug>(easymotion-s2)
-
 " tabs navigation
 map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>W :tabclose<cr>
+" open terminal in (v)ertical or (h)oritzonal
+noremap <Leader>tv :botright vnew <Bar> :terminal<CR>
+noremap <Leader>th :botright new <Bar> :terminal<CR>
+" -----
 
-" NerdTree
-nmap <Leader>nt :NERDTreeToggle<CR>
-nmap <Leader>nf :NERDTreeFind<CR>
-
-" tmux navigator
+" ----- Tmux navigator
 nnoremap <silent> <Leader><C-h> :TmuxNavigateLeft<CR>
 nnoremap <silent> <Leader><C-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <Leader><C-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <Leader><C-l> :TmuxNavigateRight<CR>
+" -----
 
-" Conquer Of Completion
+" ----- easymotion
+nmap <Leader>se <Plug>(easymotion-s2)
+" -----
+
+" ----- NerdTree
+nmap <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader>nf :NERDTreeFind<CR>
+" -----
+
+" ------- Conquer Of Completion
+
 " use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>es :CocCommand eslint.executeAutofix<CR>
 nmap <silent> <Leader>et :CocCommand tsserver.executeAutofix<CR>
-
-" yank extension
-nnoremap <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
 
 " Go To navigation 
 nmap <silent> gd <Plug>(coc-definition)
@@ -300,26 +365,29 @@ function! ShowDocumentation()
   endif
 endfunction
 
-" Symbol renaming.
+" renaming.
 nmap <leader>rn <Plug>(coc-rename)
+" yank extension
+nnoremap <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
+" -------
 
-" fzf search
+" ----- Fuzzy Finder
 map <Leader>pp :Files<CR>
 map <Leader>ss :Rg<CR>
 map <Leader>bb :Buffers<CR>
+" -----
 
-" Remap surround to lowercase s so it does not add an empty space
+" ----- Remap surround to lowercase s so it does not add an empty space
 xmap sr <Plug>VSurround
+" -----
 
-" open terminal in (v)ertical or (h)oritzonal
-noremap <Leader>tv :botright vnew <Bar> :terminal<CR>
-noremap <Leader>th :botright new <Bar> :terminal<CR>
-
-" run tests
+" ----- Tests
 nnoremap <Leader>t :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT :TestSuite<CR>
+" -----
 
+" ------- GIT
 " show git status
 map <Leader>GG :Git<CR>
 " git diff split
@@ -333,3 +401,4 @@ map <Leader>Gw :Gw<CR>
 " show logs
 map <Leader>Gl :GV<CR>
 map <Leader>Gll :GV!<CR>
+" -------
