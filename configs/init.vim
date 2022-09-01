@@ -49,6 +49,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
 Plug 'mhartington/oceanic-next'
+Plug 'ray-x/aurora'
 " -----
 
 " ----- Syntax
@@ -146,6 +147,15 @@ hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
+"" -----
+
+"" aurora
+let g:aurora_italic = 1     " italic
+let g:aurora_transparent = 1     " transparent
+let g:aurora_bold = 1     " bold
+let g:aurora_darker = 1     " darker background
+
+colorscheme aurora
 "" -----
 
 " for vim 7
