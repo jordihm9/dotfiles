@@ -92,10 +92,14 @@ Plug 'honza/vim-snippets'
 Plug 'janko-m/vim-test'
 " -----
 
-" Search Tools
+" ----- Search Tools
 Plug 'junegunn/fzf' " Fuzzy Finder
 Plug 'junegunn/fzf.vim' " Fuzzy Finder
 Plug 'easymotion/vim-easymotion' " fast-moving-search
+Plug 'nvim-lua/plenary.nvim' " required by telescope
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"" -----
 
 " ----- GIT
 Plug 'tpope/vim-fugitive'
@@ -378,13 +382,37 @@ endfunction
 " renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " yank extension
-nnoremap <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
+map <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
 " -------
 
 " ----- Fuzzy Finder
-map <Leader>pp :Files<CR>
-map <Leader>ss :Rg<CR>
-map <Leader>bb :Buffers<CR>
+" map <Leader>pp :Files<CR>
+nnoremap <Leader>pp <cmd>Telescope find_files<CR>
+" map <Leader>ss :Rg<CR>
+nnoremap <Leader>ss <cmd>Telescope live_grep<CR>
+" map <Leader>bb :Buffers<CR>
+nnoremap <Leader>bb <cmd>Telescope buffers<CR>
+" configure mappings for telescope;
+" - press Esc on insert mode to close
+" - C-j for previous item
+" - C-k for next item
+" - C-i go to file as a split
+lua << EOF
+local actions = require("telescope.actions")
+require("telescope").setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<C-u>"] = false,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-i>"] = actions.select_horizontal,
+      }
+    }
+  }
+}
+EOF
 " -----
 
 " ----- Remap surround to lowercase s so it does not add an empty space
