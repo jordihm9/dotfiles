@@ -309,6 +309,8 @@ map <Leader>W :tabclose<cr>
 " open terminal in (v)ertical or (h)oritzonal
 noremap <Leader>tv :botright vnew <Bar> :terminal<CR>
 noremap <Leader>th :botright new <Bar> :terminal<CR>
+noremap <Leader>tt :tabnew new <Bar> :terminal<CR>
+tnoremap <Esc> <C-\><C-n> " remap exit from intermode in terminal
 " -----
 
 " ----- Tmux navigator
