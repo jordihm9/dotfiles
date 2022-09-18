@@ -64,6 +64,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " ----- Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
+Plug 'github/copilot.vim'
 " -----
 
 " ----- File system explorer
@@ -221,6 +222,10 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-deno',
   \ ]
+"" -----
+
+"" ----- Copilot
+let g:copilot_node_command = "~/.nodenv/versions/16.17.0/bin/node"
 "" -----
 
 "" ----- TreeSitter
@@ -386,6 +391,13 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 " yank extension
 map <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
+" -------
+
+" ----- Copilot
+imap <silent><script><expr> <C-c> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+imap <C-]> <Plug>(copilot-next)
+imap <C-[> <Plug>(copilot-previous)
 " -------
 
 " ----- Fuzzy Finder
