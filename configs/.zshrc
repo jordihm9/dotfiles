@@ -20,6 +20,7 @@ fi
 
 # aliases
 alias ls="ls -lhpG"
+alias v="nvim"
 
 # git aliases
 local GIT_LOG_FORMAT="--pretty=format:\"* <%C(yellow)%h%Creset> [%as] %C(bold green)(%ar)%Creset ~ %C(bold blue)%an%Creset: %s %C(auto)%d%Creset\""
