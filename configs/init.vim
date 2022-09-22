@@ -116,6 +116,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'yuttie/comfortable-motion.vim' " smooth scroll
 Plug 'yggdroot/indentline' " display the indention levels with thin vertical lines
 Plug 'scrooloose/nerdcommenter' " fast comment
+Plug 'folke/todo-comments.nvim' " highlight TODOs
 " -----
 
 call plug#end()
@@ -274,6 +275,29 @@ command! -bang -nargs=? -complete=dir Files
 let g:test#basic#start_normal = 1 " leave terminal in normal mode to not exit on key press
 let g:test#neovim#start_normal = 1 " leave terminal in normal mode to not exit on key press
 "" -----
+
+"" ----- vim-json
+let g:vim_json_syntax_conceal = 0
+"" -----
+
+"" ----- todo-comments
+lua << EOF
+require("todo-comments").setup {
+    \ keywords = {
+        \ FIX = {
+            \ icon = " ",
+            \ color = "error",
+            \ alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+            \ },
+        \ TODO = { icon = " ", color = "info" },
+        \ HACK = { icon = " ", color = "warning" },
+        \ WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+        \ PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        \ NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+        \ },
+    \ }
+EOF
+"" ----
 
 "" ----------------------------------------------------------------------------
 ""  Key bindings / Mappings
