@@ -315,6 +315,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>wa :wa<CR>
 " quit
 nnoremap <Leader>q :q<CR>
+" leave insert mode
+inoremap <ESC> <C-\><C-n>
 " fast scrolling 10 lines 
 map <A-J> 10j<CR>
 map <A-K> 10k<CR>
