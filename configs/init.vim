@@ -434,21 +434,17 @@ nnoremap <Leader>ss <cmd>Telescope live_grep<CR>
 " map <Leader>bb :Buffers<CR>
 nnoremap <Leader>bb <cmd>Telescope buffers<CR>
 " configure mappings for telescope;
-" - press Esc on insert mode to close
-" - C-j for previous item
-" - C-k for next item
-" - C-i go to file as a split
 lua << EOF
 local actions = require("telescope.actions")
 require("telescope").setup{
   defaults = {
     mappings = {
       i = {
-        ["<esc>"] = actions.close,
-        ["<C-u>"] = false,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-i>"] = actions.select_horizontal,
+        ["<esc>"] = actions.close, -- press Esc on insert mode to close
+        ["<C-u>"] = false, -- reset to be able to delete all line
+        ["<C-j>"] = actions.move_selection_next, -- previous item
+        ["<C-k>"] = actions.move_selection_previous, -- next item
+        ["<C-i>"] = actions.select_horizontal, -- go to file as a split
       }
     }
   }
