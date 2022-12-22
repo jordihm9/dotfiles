@@ -98,7 +98,7 @@ Plug 'junegunn/fzf' " Fuzzy Finder
 Plug 'junegunn/fzf.vim' " Fuzzy Finder
 Plug 'easymotion/vim-easymotion' " fast-moving-search
 Plug 'nvim-lua/plenary.nvim' " required by telescope
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 "" -----
 
