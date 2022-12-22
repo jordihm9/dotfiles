@@ -235,6 +235,7 @@ require 'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     disable = {},
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = false,
@@ -246,10 +247,16 @@ require 'nvim-treesitter.configs'.setup {
     "javascript",
     "json",
     "markdown",
+    "lua",
     "python",
     "scss",
     "tsx",
     "typescript",
+    "regex",
+    "dockerfile",
+    "jsdoc",
+    "diff",
+    "vim",
     "yaml"
   }
 }
