@@ -102,6 +102,10 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 "" -----
 
+" ----- Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+"" -----
+
 " ----- GIT
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -425,6 +429,10 @@ nmap <leader>rn <Plug>(coc-rename)
 " yank extension
 map <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
 " -------
+
+" ----- markdown-preview
+nmap <C-m> <Plug>MarkdownPreviewToggle
+"" -----
 
 " ----- Copilot
 imap <silent><script><expr> <C-c> copilot#Accept("\<CR>")
