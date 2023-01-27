@@ -52,11 +52,11 @@ Plug 'mhartington/oceanic-next'
 Plug 'ray-x/aurora'
 " -----
 
-" ----- Syntax
+" --- Language packs
 Plug 'sheerun/vim-polyglot'	" Collection of language packs
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'pangloss/vim-javascript'    " JavaScript support
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
+" -----
+
+" ----- Syntax
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 Plug 'norcalli/nvim-colorizer.lua' " color highlighter 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
