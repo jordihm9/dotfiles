@@ -450,7 +450,7 @@ nnoremap <Leader>pp <cmd>Telescope find_files<CR>
 nnoremap <Leader>ss <cmd>Telescope live_grep<CR>
 " map <Leader>bb :Buffers<CR>
 nnoremap <Leader>bb <cmd>Telescope buffers<CR>
-nnoremap <Leader>ts <cmd>Telescope treesitter<CR>
+nnoremap <Leader> <cmd>Telescope treesitter<CR>
 " configure mappings for telescope;
 lua << EOF
 local actions = require("telescope.actions")
@@ -476,7 +476,7 @@ xmap sr <Plug>VSurround
 " -----
 
 " ----- Tests
-nnoremap <Leader>t :TestNearest<CR>
+nnoremap <Leader>tt :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT :TestSuite<CR>
 " -----
