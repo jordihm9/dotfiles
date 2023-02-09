@@ -214,6 +214,7 @@ let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
 
 "" ----- Conquer of Completion (coc)
 let g:coc_global_extensions = [
+  \ 'coc-sh',
   \ 'coc-css',
   \ 'coc-eslint', 
   \ 'coc-html',
@@ -246,6 +247,7 @@ require 'nvim-treesitter.configs'.setup {
     disable = {},
   },
   ensure_installed = {
+    "bash",
     "css",
     "html",
     "javascript",
@@ -448,6 +450,7 @@ nnoremap <Leader>pp <cmd>Telescope find_files<CR>
 nnoremap <Leader>ss <cmd>Telescope live_grep<CR>
 " map <Leader>bb :Buffers<CR>
 nnoremap <Leader>bb <cmd>Telescope buffers<CR>
+nnoremap <Leader>ts <cmd>Telescope treesitter<CR>
 " configure mappings for telescope;
 lua << EOF
 local actions = require("telescope.actions")
