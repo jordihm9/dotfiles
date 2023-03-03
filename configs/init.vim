@@ -219,6 +219,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-html',
   \ 'coc-json',
+  \ 'coc-jedi',
   \ 'coc-pairs',
   \ 'coc-python',
   \ 'coc-snippets',
