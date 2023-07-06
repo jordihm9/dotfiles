@@ -64,7 +64,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " ----- Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
-Plug 'github/copilot.vim'
 " -----
 
 " ----- File system explorer
@@ -231,10 +230,6 @@ let g:coc_global_extensions = [
   \ ]
 "" -----
 
-"" ----- Copilot
-let g:copilot_node_command = "~/.nodenv/versions/16.17.0/bin/node"
-"" -----
-
 "" ----- TreeSitter
 lua <<EOF
 require 'nvim-treesitter.configs'.setup {
@@ -387,6 +382,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> ca <Plug>(coc-codeaction)
+nmap <silent> rn <Plug>(coc-rename)
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -427,8 +424,6 @@ function! ShowDocumentation()
   endif
 endfunction
 
-" renaming.
-nmap <leader>rn <Plug>(coc-rename)
 " yank extension
 map <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
 " -------
@@ -437,13 +432,6 @@ map <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
 nmap <C-m> <Plug>MarkdownPreviewToggle
 "" -----
 
-" ----- Copilot
-imap <silent><script><expr> <C-c> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-imap <C-]> <Plug>(copilot-next)
-imap <C-[> <Plug>(copilot-previous)
-" -------
-
 " ----- Fuzzy Finder
 " map <Leader>pp :Files<CR>
 nnoremap <Leader>pp <cmd>Telescope find_files<CR>
@@ -451,7 +439,8 @@ nnoremap <Leader>pp <cmd>Telescope find_files<CR>
 nnoremap <Leader>ss <cmd>Telescope live_grep<CR>
 " map <Leader>bb :Buffers<CR>
 nnoremap <Leader>bb <cmd>Telescope buffers<CR>
-nnoremap <Leader> <cmd>Telescope treesitter<CR>
+nnoremap <Leader>ts <cmd>Telescope treesitter<CR>
+nnoremap <Leader>Gs <cmd>Telescope git_status<CR>
 " configure mappings for telescope;
 lua << EOF
 local actions = require("telescope.actions")
