@@ -28,3 +28,5 @@ alias gsh="g show --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset - %s [%Cb
 alias glo="git log ${GIT_LOG_FORMAT}"
 alias gloo="git --no-pager log ${GIT_LOG_FORMAT} -n1"
 alias gstum="git stash --include-untracked -m"
+
+alias curltime="curl -w \"@$HOME/workspace/dotfiles/configs/curl-format.txt\" -o /dev/null -s "
