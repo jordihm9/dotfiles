@@ -490,3 +490,7 @@ map <Leader>Gw :Gw<CR>
 map <Leader>Gl :GV<CR>
 map <Leader>Gll :GV!<CR>
 " -------
+
+" ------- No Neck Pain
+nmap <Leader>ff :NoNeckPain<CR>
+" -------
