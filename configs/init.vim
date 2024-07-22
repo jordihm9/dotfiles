@@ -231,6 +231,7 @@ let g:coc_global_extensions = [
   \ 'coc-yaml',
   \ 'coc-yank',
   \ 'coc-deno',
+  \ 'coc-emmet',
   \ ]
 "" -----
 
