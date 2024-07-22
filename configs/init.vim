@@ -471,7 +471,7 @@ xmap sr <Plug>VSurround
 " -----
 
 " ----- Tests
-nnoremap <Leader>tt :TestNearest<CR>
+nnoremap <Leader>Tt :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT :TestSuite<CR>
 " -----
