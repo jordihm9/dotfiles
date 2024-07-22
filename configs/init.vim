@@ -52,6 +52,10 @@ Plug 'mhartington/oceanic-next'
 Plug 'ray-x/aurora'
 " -----
 
+" ----- Looks
+Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
+" -----
+
 " --- Language packs
 Plug 'sheerun/vim-polyglot'	" Collection of language packs
 " -----
