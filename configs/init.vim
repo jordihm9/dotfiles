@@ -124,6 +124,7 @@ Plug 'yuttie/comfortable-motion.vim' " smooth scroll
 Plug 'yggdroot/indentline' " display the indention levels with thin vertical lines
 Plug 'scrooloose/nerdcommenter' " fast comment
 Plug 'folke/todo-comments.nvim' " highlight TODOs
+Plug 'RRethy/nvim-treesitter-textsubjects' " intelligent text selection
 " -----
 
 call plug#end()
@@ -312,6 +313,22 @@ require("todo-comments").setup {
 }
 EOF
 "" ----
+
+"" ----- nvim treesitter textsubjects
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+    textsubjects = {
+        enable = true,
+        prev_selection = ',', -- (Optional) keymap to select the previous selection
+        keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+            ['i;'] = { 'textsubjects-container-inner', desc = "Select inside containers (classes, functions, etc.)" },
+        },
+    },
+}
+EOF
+"" ------
 
 "" ----------------------------------------------------------------------------
 ""  Key bindings / Mappings
