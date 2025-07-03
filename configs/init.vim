@@ -84,6 +84,7 @@ Plug 'ryanoasis/vim-devicons' " filetype-specific icons
 " typing helpers
 Plug 'alvan/vim-closetag' " closes < >
 Plug 'tpope/vim-surround' " to surround with parenthesis and ticks
+Plug 'AndrewRadev/tagalong.vim'
 " -----
 
 " ----- Tmux
