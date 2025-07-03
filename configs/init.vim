@@ -68,6 +68,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " ----- Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Conquer of Completion
+Plug 'github/copilot.vim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
 " -----
 
 " ----- File system explorer
@@ -330,6 +332,19 @@ require('nvim-treesitter.configs').setup {
 EOF
 "" ------
 
+"" ----- copilot chat
+lua <<EOF
+require("CopilotChat").setup {
+  model = 'claude-3.7-sonnet',
+  mappings = {
+    complete = {
+        insert = '<C-c>',
+    }
+  }
+}
+EOF
+"" ------
+
 "" ----------------------------------------------------------------------------
 ""  Key bindings / Mappings
 "" ----------------------------------------------------------------------------
@@ -445,6 +460,13 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
+
+" ----- Copilot
+imap <silent><script><expr> <C-c> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+imap <C-]> <Plug>(copilot-next)
+imap <C-[> <Plug>(copilot-previous)
+" -----
 
 " yank extension
 map <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
