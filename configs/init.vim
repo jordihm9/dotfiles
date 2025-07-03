@@ -236,6 +236,7 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-deno',
   \ 'coc-emmet',
+  \ 'coc-biome',
   \ ]
 "" -----
 
