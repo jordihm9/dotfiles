@@ -26,6 +26,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set rtp+=/opt/homebrew/opt/fzf
 
 " Turn on syntax highlighting.
 syntax on
@@ -35,6 +36,7 @@ filetype off
 
 " For plug-ins to load correctly.
 filetype plugin indent on
+filetype plugin on
 
 "" ----------------------------------------------------------------------------
 ""  PLUGINS
@@ -334,6 +336,11 @@ require('nvim-treesitter.configs').setup {
 EOF
 "" ------
 
+"" ----- nerdcommenter
+"" disable nerdcommenter default mappings
+let g:NERDCreateDefaultMappings = 0
+"" ------
+
 "" ----- copilot chat
 lua <<EOF
 require("CopilotChat").setup {
@@ -413,6 +420,7 @@ nmap <Leader>nf :NERDTreeFind<CR>
 " use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <Leader>fo :CocCommand editor.action.formatDocument<CR>
 nmap <silent> <Leader>es :CocCommand eslint.executeAutofix<CR>
 nmap <silent> <Leader>et :CocCommand tsserver.executeAutofix<CR>
 
@@ -468,6 +476,10 @@ imap <silent><script><expr> <C-c> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 imap <C-]> <Plug>(copilot-next)
 imap <C-[> <Plug>(copilot-previous)
+" -----
+
+" ----- Copilot chat
+nnoremap <Leader>cc :CopilotChat<CR>
 " -----
 
 " yank extension

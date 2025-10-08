@@ -2,6 +2,22 @@
 
 config_folder=$(pwd)/configs
 
+#############
+#  SCRIPTS  #
+#############
+echo ">> Scripts"
+bash_scripts=(./scripts/**/*.sh)
+# create a bin folder if it doesn't exist
+[ -d $HOME/bin ] || mkdir $HOME/bin
+for script in ${bash_scripts[@]}; do
+  echo -e "🔗 Symlinking $script to $HOME/bin"
+  #ln -s -f $script $HOME/bin/$(basename $script)
+done
+# export the bin folder to the PATH
+export PATH=$HOME/bin:$PATH
+
+exit 0
+
 ##########
 #  NVIM  #
 ##########
